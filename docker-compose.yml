@@ -88,25 +88,25 @@ services:
 #      - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
 #      - /path/to/postgres/data/on/host:/var/lib/postgresql/data # Use bind mount
 
-#  apache:
-#    image: wodby/apache:$APACHE_TAG
-#    container_name: "${PROJECT_NAME}_apache"
-#    depends_on:
-#      - php
-#    environment:
-#      APACHE_LOG_LEVEL: debug
-#      APACHE_BACKEND_HOST: php
-#      APACHE_VHOST_PRESET: php
-#      APACHE_DOCUMENT_ROOT: /var/www/html/web
-#    volumes:
-#      - ./:/var/www/html
-## For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
-##      - ./:/var/www/html:cached # User-guided caching
-##      - docker-sync:/var/www/html # Docker-sync
-#    labels:
-#      - 'traefik.backend=${PROJECT_NAME}_apache'
-#      - 'traefik.port=80'
-#      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+  # apache:
+  #   image: wodby/apache:$APACHE_TAG
+  #   container_name: "${PROJECT_NAME}_apache"
+  #   depends_on:
+  #     - php
+  #   environment:
+  #     APACHE_LOG_LEVEL: debug
+  #     APACHE_BACKEND_HOST: php
+  #     APACHE_VHOST_PRESET: php
+  #     APACHE_DOCUMENT_ROOT: /var/www/html/web
+  #   volumes:
+  #     - ./:/var/www/html
+  # # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
+  # #      - ./:/var/www/html:cached # User-guided caching
+  # #      - docker-sync:/var/www/html # Docker-sync
+  #   labels:
+  #     - 'traefik.backend=${PROJECT_NAME}_apache'
+  #     - 'traefik.port=80'
+  #     - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
 
 #  varnish:
 #    image: wodby/varnish:$VARNISH_TAG
@@ -155,16 +155,16 @@ services:
 #      - 'traefik.port=80'
 #      - 'traefik.frontend.rule=Host:pma.${PROJECT_BASE_URL}'
 
-#  solr:
-#    image: wodby/solr:$SOLR_TAG
-#    container_name: "${PROJECT_NAME}_solr"
-#    environment:
-#      SOLR_DEFAULT_CONFIG_SET: $SOLR_CONFIG_SET
-#      SOLR_HEAP: 1024m
-#    labels:
-#      - 'traefik.backend=${PROJECT_NAME}_solr'
-#      - 'traefik.port=8983'
-#      - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
+  solr:
+    image: wodby/solr:$SOLR_TAG
+    container_name: "${PROJECT_NAME}_solr"
+    environment:
+      SOLR_DEFAULT_CONFIG_SET: $SOLR_CONFIG_SET
+      SOLR_HEAP: 1024m
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_solr'
+      - 'traefik.port=8983'
+      - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
 
 #  drupal-node:
 #    image: wodby/drupal-node:$DRUPAL_NODE_TAG
@@ -231,23 +231,23 @@ services:
 #    volumes:
 #      - files:/mnt/files
 
-#  elasticsearch:
-#    image: wodby/elasticsearch:$ELASTICSEARCH_TAG
-#    environment:
-#      ES_JAVA_OPTS: "-Xms500m -Xmx500m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
+  # elasticsearch:
+  #   image: wodby/elasticsearch:$ELASTICSEARCH_TAG
+  #   environment:
+  #     ES_JAVA_OPTS: "-Xms500m -Xmx500m"
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
 
-#  kibana:
-#    image: wodby/kibana:$KIBANA_TAG
-#    depends_on:
-#      - elasticsearch
-#    labels:
-#      - 'traefik.backend=${PROJECT_NAME}_kibana'
-#      - 'traefik.port=5601'
-#      - 'traefik.frontend.rule=Host:kibana.php.docker.localhost'
+  # kibana:
+  #   image: wodby/kibana:$KIBANA_TAG
+  #   depends_on:
+  #     - elasticsearch
+  #   labels:
+  #     - 'traefik.backend=${PROJECT_NAME}_kibana'
+  #     - 'traefik.port=5601'
+  #     - 'traefik.frontend.rule=Host:kibana.php.docker.localhost'
 
 #  opensmtpd:
 #    container_name: "${PROJECT_NAME}_opensmtpd"
