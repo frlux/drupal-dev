@@ -16,10 +16,7 @@ services:
 
   php:
     user: root
-      command: "php-fpm -R"
-      environment:
-        PHP_FPM_USER: root
-        PHP_FPM_GROUP: root
+    command: "php-fpm -R"
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
     environment:
@@ -30,8 +27,8 @@ services:
       DB_PASSWORD: $DB_PASSWORD
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
-      PHP_FPM_USER: wodby
-      PHP_FPM_GROUP: wodby
+      PHP_FPM_USER: root
+      PHP_FPM_GROUP: root
       COLUMNS: 80 # Set 80 columns for docker exec -it.
 ## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
 #      PHP_XDEBUG: 1
